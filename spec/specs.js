@@ -11,7 +11,7 @@ describe('Space', function() {
         expect(testSpace.xCoordinate).to.equal(1);
     });
 
-    it("let's a player mark a space", function() {
+    it("lets a player mark a space", function() {
         var testPlayer = new Player("X");
         var testSpace = new Space(1,2);
         testSpace.markBy(testPlayer);
@@ -59,6 +59,16 @@ describe('Game', function() {
         expect(testGame.activePlayer).to.equal(testPlayer2);
     });
 
+    it("switches between players for multiple turns", function() {
+        var testPlayer1 = new Player("X");
+        var testPlayer2 = new Player("O");
+        var testBoard = new Board(9);
+        var testGame = new Game(testPlayer1, testPlayer2, testBoard);
+        testGame.turn();
+        testGame.turn();
+        expect(testGame.activePlayer).to.equal(testPlayer1);
+    });
+
     it("checks 1st column if there is a win", function() {
         var testPlayer1 = new Player("X");
         var testPlayer2 = new Player("O");
@@ -71,7 +81,7 @@ describe('Game', function() {
         expect(testGame.checkWin()).to.equal("You have won!");
     });
 
-    it("doesn't give win if there aren't three X's or O's in a row (1st column)", function() {
+    it("doesn't give win if there aren't three X's or O's in a row (1st column only)", function() {
         var testPlayer1 = new Player("X");
         var testPlayer2 = new Player("O");
         var testBoard = new Board(9);
@@ -80,7 +90,7 @@ describe('Game', function() {
         testBoard.spaces[2].markBy(testPlayer2);
         var testGame = new Game(testPlayer1, testPlayer2, testBoard);
 
-        expect(testGame.checkWin()).to.equal("you have not won");
+        expect(testGame.checkWin()).to.equal("nobody wins");
     });
 
     it("checks all columns if there is a win", function() {
@@ -107,7 +117,7 @@ describe('Game', function() {
         expect(testGame.checkWin()).to.equal("You have won!");
     });
 
-    it("check 1st row if there is not win", function() {
+    it("doesn't give win if there aren't three X's or O's in a row (1st row only)", function() {
         var testPlayer1 = new Player("X");
         var testPlayer2 = new Player("O");
         var testBoard = new Board(9);
@@ -116,7 +126,7 @@ describe('Game', function() {
         testBoard.spaces[6].markBy(testPlayer2);
         var testGame = new Game(testPlayer1, testPlayer2, testBoard);
 
-        expect(testGame.checkWin()).to.equal("you have not won");
+        expect(testGame.checkWin()).to.equal("nobody wins");
     });
 
     it("checks 1st diagonal if there is a win", function() {
@@ -131,7 +141,19 @@ describe('Game', function() {
         expect(testGame.checkWin()).to.equal("You have won!");
     });
 
-    it("checks 2nd diagonal if there is a win", function() {
+    it("doesn't give win if there aren't three X's or O's in a row (top-left to bottom-right only)", function() {
+        var testPlayer1 = new Player("X");
+        var testPlayer2 = new Player("O");
+        var testBoard = new Board(9);
+        testBoard.spaces[0].markBy(testPlayer1);
+        testBoard.spaces[4].markBy(testPlayer1);
+        testBoard.spaces[8].markBy(testPlayer2);
+        var testGame = new Game(testPlayer1, testPlayer2, testBoard);
+
+        expect(testGame.checkWin()).to.equal("nobody wins");
+    });
+
+    it("checks diagonal if there is a win (bottom-left to top-right)", function() {
         var testPlayer1 = new Player("X");
         var testPlayer2 = new Player("O");
         var testBoard = new Board(9);
@@ -141,5 +163,53 @@ describe('Game', function() {
         var testGame = new Game(testPlayer1, testPlayer2, testBoard);
 
         expect(testGame.checkWin()).to.equal("You have won!");
+    });
+
+    it("doesn't give win if there aren't three X's or O's in a row (bottom-left to top-right only)", function() {
+        var testPlayer1 = new Player("X");
+        var testPlayer2 = new Player("O");
+        var testBoard = new Board(9);
+        testBoard.spaces[2].markBy(testPlayer1);
+        testBoard.spaces[4].markBy(testPlayer2);
+        testBoard.spaces[6].markBy(testPlayer1);
+        var testGame = new Game(testPlayer1, testPlayer2, testBoard);
+
+        expect(testGame.checkWin()).to.equal("nobody wins");
+    });
+
+    it("checks full board for a win", function() {
+        var testPlayer1 = new Player("X");
+        var testPlayer2 = new Player("O");
+        var testBoard = new Board(9);
+        testBoard.spaces[0].markBy(testPlayer2);
+        testBoard.spaces[1].markBy(testPlayer2);
+        testBoard.spaces[2].markBy(testPlayer1);
+        testBoard.spaces[3].markBy(testPlayer1);
+        testBoard.spaces[4].markBy(testPlayer1);
+        testBoard.spaces[5].markBy(testPlayer2);
+        testBoard.spaces[6].markBy(testPlayer1);
+        testBoard.spaces[7].markBy(testPlayer2);
+        testBoard.spaces[8].markBy(testPlayer1);
+        var testGame = new Game(testPlayer1, testPlayer2, testBoard);
+
+        expect(testGame.checkWin()).to.equal("You have won!");
+    });
+
+    it("doesn't give win incorrectly on full board", function() {
+        var testPlayer1 = new Player("X");
+        var testPlayer2 = new Player("O");
+        var testBoard = new Board(9);
+        testBoard.spaces[0].markBy(testPlayer2);
+        testBoard.spaces[1].markBy(testPlayer2);
+        testBoard.spaces[2].markBy(testPlayer1);
+        testBoard.spaces[3].markBy(testPlayer1);
+        testBoard.spaces[4].markBy(testPlayer1);
+        testBoard.spaces[5].markBy(testPlayer2);
+        testBoard.spaces[6].markBy(testPlayer2);
+        testBoard.spaces[7].markBy(testPlayer2);
+        testBoard.spaces[8].markBy(testPlayer1);
+        var testGame = new Game(testPlayer1, testPlayer2, testBoard);
+
+        expect(testGame.checkWin()).to.equal("nobody wins");
     });
 });
