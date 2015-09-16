@@ -21,8 +21,8 @@ function Board(number) {
     this.number = number;
     this.squareRoot = Math.floor(Math.sqrt(number));
     this.spaces = [];
-    for(var i =1; i < squareRoot + 1; i++) {
-        for (var j=1; j < squareRoot + 1; j++) {
+    for(var i =1; i < this.squareRoot + 1; i++) {
+        for (var j=1; j < this.squareRoot + 1; j++) {
             var space = new Space(i, j);
             this.spaces.push(space);
         }
@@ -53,17 +53,32 @@ Game.prototype.turn = function() {
 }
 
 Game.prototype.checkWin = function() {
-    for(var i =1; i < board.squareRoot + 1; i++) {
-        for(var j = 1; j < board.squareRoot; j++) {
-            if((board.find(i,j) !== board.find(i,j+1) || (board.find(i,j) === null;))){
+    //checks column by column if it contains all of the same mark
+    for(var i =1; i < this.board.squareRoot + 1; i++) {
+        for(var j = 1; j < this.board.squareRoot; j++) {
+            console.debug(this.board.find(i,j));
+            if((this.board.find(i,j) !== this.board.find(i,j+1) || (this.board.find(i,j) == null))) {
                 break;
-            } else {
-                return j;
             }
         }
+        if(j == this.board.squareRoot){
+            return "You have won!";
+        }
+    }
 
+    //checks row by row if it contains all of the same mark
+    //for(var j =1; j < board.squareRoot + 1)
 
+    //checks diagonals if they contains all of the same mark
+
+    return "you have not won";
 }
+
+//return j
+
+//if(j == board.squareRoot) {
+//  return winner;
+//}
 
 // Board.prototype.find = function(xCoordinate, yCoordinate) {
 //     return
