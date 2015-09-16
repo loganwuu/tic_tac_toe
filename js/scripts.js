@@ -53,11 +53,13 @@ Game.prototype.turn = function() {
 }
 
 Game.prototype.checkWin = function() {
-    //checks column by column if it contains all of the same mark
+    //checks column by column if it contain all of the same mark
+
+    //rows
     for(var i =1; i < this.board.squareRoot + 1; i++) {
+        //column
         for(var j = 1; j < this.board.squareRoot; j++) {
-            console.debug(this.board.find(i,j));
-            if((this.board.find(i,j) !== this.board.find(i,j+1) || (this.board.find(i,j) == null))) {
+            if((this.board.find(i,j).letter == null) || (this.board.find(i,j).letter != this.board.find(i,j+1).letter)) {
                 break;
             }
         }
@@ -66,24 +68,36 @@ Game.prototype.checkWin = function() {
         }
     }
 
-    //checks row by row if it contains all of the same mark
-    //for(var j =1; j < board.squareRoot + 1)
+    //checks row by row if it contain all of the same mark
 
-    //checks diagonals if they contains all of the same mark
+    //column
+    for(var j = 1; j < this.board.squareRoot + 1; j++) {
+        //row
+        for(var i = 1; i < this.board.squareRoot; i++) {
+            if((this.board.find(i,j).letter == null) || (this.board.find(i,j).letter != this.board.find(i+1,j).letter)) {
+                break;
+            }
+        }
+        if(i == this.board.squareRoot){
+            return "You have won!";
+        }
+    }
+
+    //checks top-left to bottom-right if they contain all of the same mark
+    for(var i = 1; i < this.board.squareRoot; i++) {
+        if((this.board.find(i,i).letter == null) || (this.board.find(i,i).letter != this.board.find(i+1,i+1).letter)) {
+            break;
+        }
+        return "You have won!"
+    }
+
+    //checks top-right to bottom-left if they contain all of the same mark
+    for(var i = this.board.squareRoot, j = 1; i > 1, j < this.board.squareRoot; i--, j++) {
+        if((this.board.find(i,j).letter == null) || (this.board.find(i,j).letter != this.board.find(i-1,j+1).letter)) {
+            break;
+        }
+        return "You have won!"
+    }
 
     return "you have not won";
 }
-
-//return j
-
-//if(j == board.squareRoot) {
-//  return winner;
-//}
-
-// Board.prototype.find = function(xCoordinate, yCoordinate) {
-//     return
-// }
-
-// Space.prototype.markedBy = function() {
-//
-// }
