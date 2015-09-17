@@ -3,10 +3,14 @@ col-sm-1 {
 }
 
 .btn-info{
-    width: 25px;
-    height: 25px;
+    width: 48.1484px;
+    height: 40px;
 }
 
 .row{
-    padding: 2.5px;
+    padding: 10px;
+}
+
+.game{
+    align: center;
 }

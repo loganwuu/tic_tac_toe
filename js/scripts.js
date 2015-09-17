@@ -46,13 +46,9 @@ function Game(player1, player2, board) {
 
 Game.prototype.turn = function() {
     if(this.activePlayer.mark == this.player1.mark) {
-        console.log(this.activePlayer.mark);
-        //debugger;
         this.activePlayer = this.player2;
 
     } else {
-        console.log(this.activePlayer.mark);
-        //debugger;
         this.activePlayer = this.player1;
 
     }
@@ -75,7 +71,6 @@ Game.prototype.checkWin = function() {
     }
 
     //checks row by row if it contain all of the same mark
-
     //column
     for(var j = 1; j < this.board.squareRoot + 1; j++) {
         //row
@@ -91,13 +86,9 @@ Game.prototype.checkWin = function() {
 
     //checks top-left to bottom-right if they contain all of the same mark
     for(var i = 1; i < this.board.squareRoot; i++) {
-        //debugger;
-        //issue is if (1,1) and (2,2) are equal then this logic will be false and the loop will not break. Which means that you can with with only (1,1) and (2,2) marked
         if((this.board.find(i,i).letter == null) || (this.board.find(i,i).letter != this.board.find(i+1,i+1).letter)) {
-            //debugger;
             break;
         }
-        // debugger;
         if(i == this.board.squareRoot - 1){
             return "You have won!";
         }
@@ -105,7 +96,6 @@ Game.prototype.checkWin = function() {
 
     //checks top-right to bottom-left if they contain all of the same mark
     for(var i = this.board.squareRoot, j = 1; i > 1, j < this.board.squareRoot; i--, j++) {
-        ////issue is if (1,3) and (2,2) are equal then this logic will be false and the loop will not break. Which means that you can with with only (1,3) and (2,2) marked
         if((this.board.find(i,j).letter == null) || (this.board.find(i,j).letter != this.board.find(i-1,j+1).letter)) {
             break;
         }
@@ -125,20 +115,58 @@ $(document).ready(function() {
     for(var j = 1; j < board.squareRoot+1; j++) {
         $(".game").append("<div class='row'>");
         for(var i = 1; i < board.squareRoot+1; i++) {
-            $(".game").append("<div class='col-sm-1'><button type='submit' class='btn btn-info' id='" + i + "," + j + "'></button></div>");
+            $(".game").append("<div class='col-sm-1 col'><button type='submit' class='btn btn-info btn-lg' id='" + i + "," + j + "'></button></div>");
         }
         $(".game").append("</div>");
     }
+
     $(".btn-info").click(function() {
         var space = $(this).attr("id");
         var xCoord = parseInt(space.slice(0,1));
         var yCoord = parseInt(space.slice(2,3));
         board.find(xCoord, yCoord).markBy(game.activePlayer);
-        $(this).text(board.find(xCoord, yCoord).letter);
+        if(board.find(xCoord, yCoord).letter == "X"){
+            $(this).append('<i class="fa fa-times" align="center"></i>');
+        } else {
+            $(this).append('<i class="fa fa-circle-o" align="center"></i>');
+        }
+        $(this).prop('disabled','true');
+        if(game.checkWin() === "You have won!"){
+            alert(game.activePlayer.mark + " has won!");
+        }
         game.turn();
-        alert(game.checkWin());
     });
+
     $("form#new-game").submit(function(event) {
         event.preventDefault();
+        $(".game").empty();
+        board = new Board(parseInt($("select#grid").val()));
+        game = new Game(player1, player2, board);
+        for(var j = 1; j < board.squareRoot+1; j++) {
+            $(".game").append("<div class='row'>");
+            for(var i = 1; i < board.squareRoot+1; i++) {
+                $(".game").append("<div class='col-sm-1 col'><button type='submit' class='btn btn-info btn-lg' id='" + i + "," + j + "'></button></div>");
+            }
+            $(".game").append("</div>");
+        }
+
+        $(".btn-info").click(function() {
+            var space = $(this).attr("id");
+            var coords = space.split(",");
+            var xCoord = parseInt(coords[0]);
+            var yCoord = parseInt(coords[1]);
+            // debugger;
+            board.find(xCoord, yCoord).markBy(game.activePlayer);
+            if(board.find(xCoord, yCoord).letter == "X"){
+                $(this).append('<i class="fa fa-times" align="center"></i>');
+            } else {
+                $(this).append('<i class="fa fa-circle-o" align="center"></i>');
+            }
+            $(this).prop('disabled','true');
+            if(game.checkWin() === "You have won!"){
+                alert(game.activePlayer.mark + " has won!");
+            }
+            game.turn();
+        });
     });
 });

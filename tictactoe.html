@@ -1,6 +1,7 @@
 <html>
     <head>
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <link href="css/styles.css" rel="stylesheet" type="text/css">
         <script src="js/jquery-1.11.3.js"></script>
         <script src="js/scripts.js"></script>
@@ -13,6 +14,18 @@
             </div>
             <div align="center" class="row">
                 <form id="new-game">
+                    <label for="grid">Board Size</label>
+                    <select id="grid" name="grid">
+                        <option value='4'>2x2</option>
+                        <option value='9'>3x3</option>
+                        <option value='16'>4x4</option>
+                        <option value='25'>5x5</option>
+                        <option value='36'>6x6</option>
+                        <option value='49'>7x7</option>
+                        <option value='64'>8x8</option>
+                        <option value='81'>9x9</option>
+                        <option value='100'>10x10</option>
+                    </select>
                     <button type="submit" class="btn btn-primary">New Game</button>
                 </form>
             </div>
