@@ -115,7 +115,7 @@ $(document).ready(function() {
     for(var j = 1; j < board.squareRoot+1; j++) {
         $(".game").append("<div class='row'>");
         for(var i = 1; i < board.squareRoot+1; i++) {
-            $(".game").append("<div class='col-sm-1 col'><button type='submit' class='btn btn-info btn-lg' id='" + i + "," + j + "'></button></div>");
+            $(".game").append("<div class='col-sm-1 col'><button type='submit' class='btn btn-info btn-lg animated bounceInRight' id='" + i + "," + j + "'></button></div>");
         }
         $(".game").append("</div>");
     }
@@ -147,7 +147,7 @@ $(document).ready(function() {
         for(var j = 1; j < board.squareRoot+1; j++) {
             $(".game").append("<div class='row'>");
             for(var i = 1; i < board.squareRoot+1; i++) {
-                $(".game").append("<div class='col-sm-1'><button type='submit' class='btn btn-info btn-lg' id='" + i + "," + j + "'></button></div>");
+                $(".game").append("<div class='col-sm-1'><button type='submit' class='btn btn-info btn-lg animated bounceInRight' id='" + i + "," + j + "'></button></div>");
             }
             $(".game").append("</div>");
         }
