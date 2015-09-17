@@ -97,17 +97,21 @@ Game.prototype.checkWin = function() {
             //debugger;
             break;
         }
-        //debugger;
-        r eturn "You have won!"
+        // debugger;
+        if(i == this.board.squareRoot - 1){
+            return "You have won!";
+        }
     }
 
     //checks top-right to bottom-left if they contain all of the same mark
-    for(var i = this.board.squareRoot, j = 1; i >= 1, j <= this.board.squareRoot; i--, j++) {
+    for(var i = this.board.squareRoot, j = 1; i > 1, j < this.board.squareRoot; i--, j++) {
         ////issue is if (1,3) and (2,2) are equal then this logic will be false and the loop will not break. Which means that you can with with only (1,3) and (2,2) marked
         if((this.board.find(i,j).letter == null) || (this.board.find(i,j).letter != this.board.find(i-1,j+1).letter)) {
             break;
         }
-        return "You have won!"
+        if(j == this.board.squareRoot - 1){
+            return "You have won!"
+        }
     }
 
     return "nobody wins";

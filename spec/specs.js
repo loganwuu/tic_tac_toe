@@ -129,7 +129,7 @@ describe('Game', function() {
         expect(testGame.checkWin()).to.equal("nobody wins");
     });
 
-    it("checks 1st diagonal if there is a win", function() {
+    it("checks diagonal if there is a win (top-left to bottom-right)", function() {
         var testPlayer1 = new Player("X");
         var testPlayer2 = new Player("O");
         var testBoard = new Board(9);
@@ -137,7 +137,6 @@ describe('Game', function() {
         testBoard.spaces[4].markBy(testPlayer1);
         testBoard.spaces[8].markBy(testPlayer1);
         var testGame = new Game(testPlayer1, testPlayer2, testBoard);
-
         expect(testGame.checkWin()).to.equal("You have won!");
     });
 
@@ -169,8 +168,8 @@ describe('Game', function() {
         var testPlayer1 = new Player("X");
         var testPlayer2 = new Player("O");
         var testBoard = new Board(9);
-        testBoard.spaces[2].markBy(testPlayer1);
-        testBoard.spaces[4].markBy(testPlayer2);
+        testBoard.spaces[2].markBy(testPlayer2);
+        testBoard.spaces[4].markBy(testPlayer1);
         testBoard.spaces[6].markBy(testPlayer1);
         var testGame = new Game(testPlayer1, testPlayer2, testBoard);
 
