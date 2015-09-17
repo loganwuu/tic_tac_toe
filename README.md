@@ -15,7 +15,7 @@ The web app is built by creating objects ```Player```, ```Space```, ```Board``` 
 
 ## Technologies Used
 
-HTML, CSS, JavaScript, jQuery, MochaJS, Chai Assertion Library
+HTML, CSS, JavaScript, jQuery, MochaJS, Chai Assertion Library, [Font Awesome](https://fortawesome.github.io/Font-Awesome/icons/), [Animate.css](https://daneden.github.io/animate.css/), [Yeti Bootstrap theme](https://bootswatch.com/yeti/)
 
 ### Legal
 

@@ -71,9 +71,10 @@ Game.prototype.checkWin = function() {
     }
 
     //checks row by row if it contain all of the same mark
-    //column
+    
+    //columns
     for(var j = 1; j < this.board.squareRoot + 1; j++) {
-        //row
+        //rows
         for(var i = 1; i < this.board.squareRoot; i++) {
             if((this.board.find(i,j).letter == null) || (this.board.find(i,j).letter != this.board.find(i+1,j).letter)) {
                 break;
@@ -108,6 +109,8 @@ Game.prototype.checkWin = function() {
 }
 
 $(document).ready(function() {
+    ////////////////////////////////////////////////////////////////
+    //creates new 3x3 board
     var turnCount = 0;
     var player1 = new Player("X");
     var player2 = new Player("O");
@@ -121,6 +124,7 @@ $(document).ready(function() {
         }
         $(".game").append("</div>");
     }
+    ////////////////////////////////////////////////////////////////
 
     $(".btn-info").click(function() {
         var space = $(this).attr("id");
@@ -152,6 +156,8 @@ $(document).ready(function() {
     });
 
     $("form#new-game").submit(function(event) {
+        ////////////////////////////////////////////////////////////////
+        //creates new n x n board where n is the value of the option chosen
         turnCount = 0;
         event.preventDefault();
         $(".game").empty();
@@ -165,6 +171,7 @@ $(document).ready(function() {
             }
             $(".game").append("</div>");
         }
+        ////////////////////////////////////////////////////////////////
 
         $(".btn-info").click(function() {
             var space = $(this).attr("id");
