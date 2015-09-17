@@ -117,7 +117,7 @@ $(document).ready(function() {
     for(var j = 1; j < board.squareRoot+1; j++) {
         $(".game").append("<div class='row'>");
         for(var i = 1; i < board.squareRoot+1; i++) {
-            $(".game").append("<div class='col-sm-1 col'><button type='submit' class='btn btn-info btn-lg animated bounceInRight' id='" + i + "," + j + "'></button></div>");
+            $(".game").append("<div class='col-xs-1 col'><button type='submit' class='btn btn-info btn-lg animated bounceInRight' id='" + i + "," + j + "'></button></div>");
         }
         $(".game").append("</div>");
     }
@@ -128,26 +128,25 @@ $(document).ready(function() {
         var yCoord = parseInt(space.slice(2,3));
         board.find(xCoord, yCoord).markBy(game.activePlayer);
         if(board.find(xCoord, yCoord).letter == "X"){
-            $(this).append('<i class="fa fa-times" align="center"></i>');
+            $(this).append('<i class="fa fa-times fa-lg" align="center"></i>');
             $(this).toggleClass('btn-info btn-danger');
         } else {
-            $(this).append('<i class="fa fa-circle-o" align="center"></i>');
+            $(this).append('<i class="fa fa-circle-o fa-lg" align="center"></i>');
             $(this).toggleClass('btn-info btn-warning');
         }
         $(this).prop('disabled','true');
         if(game.checkWin() === "You have won!"){
-            alert(game.activePlayer.mark + " has won!");
+            $(".playerTurn").text(game.activePlayer.mark + " has won!");
             $(".btn-info").each(function() {
                 $(this).prop('disabled','true');
             });
-            $(".playerTurn").text("Game Over");
         }
         turnCount++;
         if(turnCount == parseInt($("select#grid").val())){
-            alert("Cat's game");
+            $(".playerTurn").text("Cat's game");
         }
         game.turn();
-        if($(".playerTurn").text() != "Game Over"){
+        if(($(".playerTurn").text().slice(2,9) != "has won") && ($(".playerTurn").text() != "Cat's game")){
             $(".playerTurn").text(game.activePlayer.mark + "'s turn");
         }
     });
@@ -162,7 +161,7 @@ $(document).ready(function() {
         for(var j = 1; j < board.squareRoot+1; j++) {
             $(".game").append("<div class='row'>");
             for(var i = 1; i < board.squareRoot+1; i++) {
-                $(".game").append("<div class='col-sm-1'><button type='submit' class='btn btn-info btn-lg animated bounceInRight' id='" + i + "," + j + "'></button></div>");
+                $(".game").append("<div class='col-xs-1'><button type='submit' class='btn btn-info btn-lg animated bounceInRight' id='" + i + "," + j + "'></button></div>");
             }
             $(".game").append("</div>");
         }
@@ -175,26 +174,25 @@ $(document).ready(function() {
             // debugger;
             board.find(xCoord, yCoord).markBy(game.activePlayer);
             if(board.find(xCoord, yCoord).letter == "X"){
-                $(this).append('<i class="fa fa-times" align="center"></i>');
+                $(this).append('<i class="fa fa-times fa-lg" align="center"></i>');
                 $(this).toggleClass('btn-info btn-danger');
             } else {
-                $(this).append('<i class="fa fa-circle-o" align="center"></i>');
+                $(this).append('<i class="fa fa-circle-o fa-lg" align="center"></i>');
                 $(this).toggleClass('btn-info btn-warning');
             }
             $(this).prop('disabled','true');
             if(game.checkWin() === "You have won!"){
-                alert(game.activePlayer.mark + " has won!");
+                $(".playerTurn").text(game.activePlayer.mark + " has won!");
                 $(".btn-info").each(function() {
                     $(this).prop('disabled','true');
                 });
-                $(".playerTurn").text("Game Over");
             }
             turnCount++;
             if(turnCount == parseInt($("select#grid").val())){
-                alert("Cat's game");
+                $(".playerTurn").text("Cat's game");
             }
             game.turn();
-            if($(".playerTurn").text() != "Game Over"){
+            if(($(".playerTurn").text().slice(2,9) != "has won") && ($(".playerTurn").text() != "Cat's game")){
                 $(".playerTurn").text(game.activePlayer.mark + "'s turn");
             }
         });
