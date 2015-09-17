@@ -10,9 +10,11 @@
     <body>
         <div class="container-fluid">
             <h1>Tic Tac Toe</h1>
-            <div class="container-fluid game">
+            <div align="center" class="container-fluid game">
             </div>
-            <div align="center" class="row">
+
+            <div class="row">
+                <div class='col-sm-10'>
                 <form id="new-game">
                     <label for="grid">Board Size</label>
                     <select id="grid" name="grid">
@@ -26,8 +28,9 @@
                         <option value='81'>9x9</option>
                         <option value='100'>10x10</option>
                     </select>
-                    <button type="submit" class="btn btn-primary">New Game</button>
+                    <button type="submit" class="btn btn-primary btn-sm">New Game</button>
                 </form>
+                </div>
             </div>
         </div>
     </body>

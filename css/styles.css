@@ -1,27 +1,38 @@
-col-sm-1 {
+.col-sm-1 {
+    padding: 0 0;
+    width: 65px;
 
 }
 
-.btn-info{
+.btn-info, .btn-warning, .btn-danger {
     width: 48.1484px;
     height: 45px;
+    float: left;
+    margin:10px 10px 10px 10px;
+    padding:0 0;
 }
 
-.btn-warning{
-    width: 48.1484px;
-    height: 45px;
-}
-
-.btn-danger{
-    width: 48.1484px;
-    height: 45px;
-}
-
-
-.row{
+/*.row{
     padding: 12px;
+}*/
+
+h1 {
+    margin-top: 15px;
+    margin-left: 25px;
 }
 
-.game{
-    align: center;
+.game {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#new-game {
+    margin-top: 15px;
+    margin-left: 25px;
+
+}
+
+@media (min-width: 768px) {
+  .col-sm-1 {
+  }
 }
