@@ -108,10 +108,12 @@ Game.prototype.checkWin = function() {
 }
 
 $(document).ready(function() {
+    var turnCount = 0;
     var player1 = new Player("X");
     var player2 = new Player("O");
     var board = new Board(9);
     var game = new Game(player1, player2, board);
+    $(".playerTurn").text(game.activePlayer.mark + "'s turn")
     for(var j = 1; j < board.squareRoot+1; j++) {
         $(".game").append("<div class='row'>");
         for(var i = 1; i < board.squareRoot+1; i++) {
@@ -135,15 +137,28 @@ $(document).ready(function() {
         $(this).prop('disabled','true');
         if(game.checkWin() === "You have won!"){
             alert(game.activePlayer.mark + " has won!");
+            $(".btn-info").each(function() {
+                $(this).prop('disabled','true');
+            });
+            $(".playerTurn").text("Game Over");
+        }
+        turnCount++;
+        if(turnCount == parseInt($("select#grid").val())){
+            alert("Cat's game");
         }
         game.turn();
+        if($(".playerTurn").text() != "Game Over"){
+            $(".playerTurn").text(game.activePlayer.mark + "'s turn");
+        }
     });
 
     $("form#new-game").submit(function(event) {
+        turnCount = 0;
         event.preventDefault();
         $(".game").empty();
         board = new Board(parseInt($("select#grid").val()));
         game = new Game(player1, player2, board);
+        $(".playerTurn").text(game.activePlayer.mark + "'s turn")
         for(var j = 1; j < board.squareRoot+1; j++) {
             $(".game").append("<div class='row'>");
             for(var i = 1; i < board.squareRoot+1; i++) {
@@ -169,8 +184,19 @@ $(document).ready(function() {
             $(this).prop('disabled','true');
             if(game.checkWin() === "You have won!"){
                 alert(game.activePlayer.mark + " has won!");
+                $(".btn-info").each(function() {
+                    $(this).prop('disabled','true');
+                });
+                $(".playerTurn").text("Game Over");
+            }
+            turnCount++;
+            if(turnCount == parseInt($("select#grid").val())){
+                alert("Cat's game");
             }
             game.turn();
+            if($(".playerTurn").text() != "Game Over"){
+                $(".playerTurn").text(game.activePlayer.mark + "'s turn");
+            }
         });
     });
 });
