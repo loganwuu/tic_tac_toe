@@ -127,8 +127,10 @@ $(document).ready(function() {
         board.find(xCoord, yCoord).markBy(game.activePlayer);
         if(board.find(xCoord, yCoord).letter == "X"){
             $(this).append('<i class="fa fa-times" align="center"></i>');
+            $(this).toggleClass('btn-info btn-danger');
         } else {
             $(this).append('<i class="fa fa-circle-o" align="center"></i>');
+            $(this).toggleClass('btn-info btn-warning');
         }
         $(this).prop('disabled','true');
         if(game.checkWin() === "You have won!"){
@@ -159,8 +161,10 @@ $(document).ready(function() {
             board.find(xCoord, yCoord).markBy(game.activePlayer);
             if(board.find(xCoord, yCoord).letter == "X"){
                 $(this).append('<i class="fa fa-times" align="center"></i>');
+                $(this).toggleClass('btn-info btn-danger');
             } else {
                 $(this).append('<i class="fa fa-circle-o" align="center"></i>');
+                $(this).toggleClass('btn-info btn-warning');
             }
             $(this).prop('disabled','true');
             if(game.checkWin() === "You have won!"){

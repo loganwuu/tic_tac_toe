@@ -4,11 +4,22 @@ col-sm-1 {
 
 .btn-info{
     width: 48.1484px;
-    height: 40px;
+    height: 45px;
 }
 
+.btn-warning{
+    width: 48.1484px;
+    height: 45px;
+}
+
+.btn-danger{
+    width: 48.1484px;
+    height: 45px;
+}
+
+
 .row{
-    padding: 10px;
+    padding: 12px;
 }
 
 .game{
