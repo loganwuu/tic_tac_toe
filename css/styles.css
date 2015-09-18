@@ -23,7 +23,7 @@ h1 {
     font-family: 'Roboto', sans-serif;
     font-size: 4em;
     margin-top: 15px;
-    margin-left: 12px;
+    margin-left: 0;
 }
 
 h4 {
@@ -47,5 +47,44 @@ h4 {
     /*padding-left: 15px;
     padding-right: 15px;*/
 
-    width:1162px;
+    width: 1162px;
+}
+
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color: #f5f5f5;
+}
+
+body > .container {
+    padding: 60px 15px 0;
+}
+
+.container .text-muted {
+    margin: 20px 0;
+}
+
+.footer > .container {
+    padding-right: 15px;
+    padding-left: 12px;
+}
+
+.text-muted {
+    font-size: 90%;
 }

@@ -71,7 +71,7 @@ Game.prototype.checkWin = function() {
     }
 
     //checks row by row if it contain all of the same mark
-    
+
     //columns
     for(var j = 1; j < this.board.squareRoot + 1; j++) {
         //rows
